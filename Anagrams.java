@@ -65,6 +65,7 @@ string, decrement its count from the frequency array. If the strings are anagram
 all positions in the frequency array will be zero. Any non-zero position means the 
 frequency of that character is not equal in both the strings. */
 
+	//Not suitable when Strings have repeated charcaters eg: lissen and silent are anagrams accoring to this logic! go for frequency method only
 	static boolean isAnagram(String str1, String str2) {
 		str1 = str1.toLowerCase();
 		str2 = str2.toLowerCase();
