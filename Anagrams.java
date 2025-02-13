@@ -31,6 +31,7 @@ Auxiliary Space: O(1) where the strings are mutable but O(n) in languages like J
 		}
 		*/
 		System.out.println(checkAnagrams(str1, str2));
+		System.out.println(isAnagram(str1, str2));
 	}
 
 	/* Time Complexity: O(m + n), where m and n are length of string str1 and str2 respectively. */
@@ -63,4 +64,28 @@ Count character frequency in the first string, then for each character in the se
 string, decrement its count from the frequency array. If the strings are anagrams, 
 all positions in the frequency array will be zero. Any non-zero position means the 
 frequency of that character is not equal in both the strings. */
+
+	static boolean isAnagram(String str1, String str2) {
+		str1 = str1.toLowerCase();
+		str2 = str2.toLowerCase();
+		char [] arr1 = str1.toCharArray();
+		char [] arr2 = str2.toCharArray();
+		if (arr1.length != arr2.length)
+			return false;
+		int [] countArr = new int[arr1.length];
+		int count;
+		for (int i = 0; i < arr1.length; i++) {
+			count = 0;
+			for(int j = 0; j < arr2.length; j++) {
+				if (arr1[i] == arr2[j])
+					count++;
+			}
+			countArr[i] = count;
+		}
+		for (int c : countArr) {
+			if (c == 0)
+				return false;
+		}
+		return true;
+	}
 }
