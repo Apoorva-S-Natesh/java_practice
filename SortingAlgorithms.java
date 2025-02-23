@@ -16,8 +16,12 @@ class SortingAlgorithms
 			arr[i] = scan.nextInt();
 		}
 
+		System.out.println("Array before sorting");
+		printArray(arr);
+
 		//calling the sorting algorithm
-		bubbleSort(arr, n);
+		//bubbleSort(arr, n);
+		selectionSort(arr, n);
 
 		scan.close();
 	}
@@ -36,10 +40,37 @@ class SortingAlgorithms
 				}
 			}
 		}
-		
-		//Printing the sorted array
-		System.out.println("Sorted Array");
+		System.out.println("Array after Bublbe sort");
+		printArray(arr);
+	}
+
+	static void selectionSort(int[] arr, int n)
+	{
+		for (int i = 0; i < n-1; i++)
+		{
+			int pos = i;
+			int min = arr[pos]; 
+			for (int j = i+1; j < n; j++)
+			{
+				if (arr[j] < min)
+				{
+					pos = j;
+					min = arr[j];
+				}
+			}
+			int temp = arr[i];
+			arr[i] = arr[pos];
+			arr[pos] = temp;
+		}
+		System.out.println("Array after selection sort");
+		printArray(arr);
+	}
+	
+	private static void printArray(int [] arr)
+	{
+		//Printing the array
 		for (int num : arr)
 			System.out.print(num + " ");
+		System.out.println();
 	}
 }
