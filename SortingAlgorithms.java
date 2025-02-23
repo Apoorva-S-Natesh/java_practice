@@ -20,8 +20,9 @@ class SortingAlgorithms
 		printArray(arr);
 
 		//calling the sorting algorithm
-		//bubbleSort(arr, n);
+		bubbleSort(arr, n);
 		selectionSort(arr, n);
+		insertionSort(arr, n);
 
 		scan.close();
 	}
@@ -63,6 +64,23 @@ class SortingAlgorithms
 			arr[pos] = temp;
 		}
 		System.out.println("Array after selection sort");
+		printArray(arr);
+	}
+
+	static void insertionSort(int [] arr, int n)
+	{
+		for (int i = 1; i < n; i++)
+		{
+			int key = arr[i];
+			int j = i-1;
+			while ( j >= 0 && arr[j] > key)
+			{
+				arr[j+1] = arr[j];
+				j--;
+			}
+			arr[j+1] = key;
+		}
+		System.out.println("Array after insertion sort");
 		printArray(arr);
 	}
 	
