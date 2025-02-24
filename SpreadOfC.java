@@ -2,7 +2,7 @@ public class SpreadOfC
 {
 	public static void main(String[] args) 
 	{
-        String [] sequence = {"TCCCCGCATAGCTGAACAT", "TGACGCGCGATAGTTTCCA", "TTAACGTAACGAGTGTCGG", "TTAGGTAACGAGCGTTAGT", "TTACGTAAGCGTTAGTCGG", "TACGGACGTTAGTATTCGG"};
+        String [] sequence = {""};
 		for (int i = 0; i < sequence.length; i++)
 		{
         	int c_score = calculateSpread(sequence[i], 'C');
