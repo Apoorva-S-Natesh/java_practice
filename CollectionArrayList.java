@@ -58,5 +58,8 @@ class CollectionArrayList
 			n *= 10;
 			System.out.print(n + " ");
 		}
+		num.add(3, 60); //Inserts the data by shifting the elements and not data is replaced.
+		num.set(4,70); // The index at 4 will be replaced by the data sent. The elemtns dont  shift.
+		System.out.println(num);
 	}
 }
