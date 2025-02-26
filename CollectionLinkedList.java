@@ -28,3 +28,13 @@ class CollectionLinkedList
 		sc.close();
 	}
 }
+
+//Boxing (primitive to non-primitive data type)
+/*
+int a = 10;
+Integer i = new Integer(a); //or Integer i = a;
+System.out.println(i);
+//Unboxing (non-primitive to primitive)
+itn b =i;
+System.out.println(b);
+*/
