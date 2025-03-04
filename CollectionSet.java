@@ -6,6 +6,7 @@ class CollectionSet {
 		//CollectionTreeSet();
 		CollectionHashset();
 		CollectionLinkedHashset();
+		HastSetOperation.operations();
 	}
 
 	static void CollectionTreeSet()
@@ -91,5 +92,43 @@ class CollectionSet {
 		//Allows heterogenous data 
 		techTools.add(20);
 		System.out.println("Allows heterogenous data" + techTools);
+	}
+}
+
+class HastSetOperation {
+	public static void operations() 
+	{
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter number of initial elements in set");
+		int n1 = scan.nextInt();
+	
+		HashSet <Integer> first = new HashSet<>();
+		System.out.println("Enter number present in initial set");
+		for (int i=0; i< n1; i++)
+			first.add(scan.nextInt());
+		System.out.println("Perform operations or type stop");
+		while (true)
+		{	
+			//GIve an operation like ADD number || REMOVE number || PRINT || STOP || CHECK number
+			String [] operation = scan.nextLine().split("\\s+");
+			if (operation[0].equalsIgnoreCase("STOP"))
+				break;
+			else if (operation[0].equalsIgnoreCase("PRINT"))
+				System.out.println(first);
+			else if (operation[0].equalsIgnoreCase("ADD"))
+				first.add(Integer.parseInt(operation[1]));
+			else if (operation[0].equalsIgnoreCase("REMOVE"))
+			{
+				if (first.contains(Integer.parseInt(operation[1])))
+					first.remove(Integer.parseInt(operation[1]));
+			}
+			else if (operation[0].equalsIgnoreCase("CHECK"))
+			{
+				if (first.contains(Integer.parseInt(operation[1])))
+					System.out.println("Number Present");
+				else
+					System.out.println("Number Not Present");
+			}
+		}
 	}
 }
