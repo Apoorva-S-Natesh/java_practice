@@ -62,6 +62,12 @@ class CollectionSet {
 			System.out.println("git is in techTools");
 		}
 
+		Iterator <String> name = techTools.iterator(); 
+		while (name.hasNext())
+		{
+			System.out.println(name.next());
+		}
+
 		//Allows heterogenous data 
 		techTools.add(20);
 		System.out.println("Allows heterogenous data" + techTools);
