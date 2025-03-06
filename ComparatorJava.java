@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.Collections;
+import java.util.*;
 
 class ComparatorJava {
 	public static void main(String [] args) {
@@ -51,7 +52,7 @@ class ComparatorJava {
 		students.add(s2);
 		students.add(s3);
 		students.add(s4);
-		System.out.println("Original List" +students);
+		System.out.println("Original List" + students);
 
 		//Collections.sort(students);
 		/*  error: no suitable method found for sort(ArrayList<Student>)
@@ -70,13 +71,41 @@ class ComparatorJava {
 		//System.out.println(students);
 
 		//Use compareTo method for such objects from Comparable interface (so Student class implements Comparable interface which is a functional interface(only 1 function inside))
-		Collections.sort(students);
-		for (Student s :students)
-			System.out.println(s);
+		//Collections.sort(students);
+		// for (Student s :students)
+		// 	System.out.println(s);
+
+
+		//When The target class (Student class) is not accessible to the programmer so we cannot write anything in the Student class 
+		//In this case we need to use a Comparator
+
+		Organiser organiser = new Organiser();
+		Collections.sort(students, organiser);
+		System.out.println("Sorted list: "+ students);
+
 	}
 }
 
-class Student implements Comparable
+class Organiser implements Comparator {
+	
+	@Override
+	public int compare(Object o1, Object o2)
+	{
+		Student s1 = (Student)o1;
+		Student s2 = (Student)o2;
+
+		if (s1.cgpa > s2.cgpa)
+			return 1;
+		else if (s1.cgpa < s2.cgpa)
+			return -1;
+
+		return 0;
+	}
+}
+
+//class Student implements Comparable
+class Student
+
 {
 	int roll;
 	String name;
@@ -122,12 +151,12 @@ class Student implements Comparable
 	// }
 
 	//Sorting based on name in dictionary order
-	@Override
-	public int compareTo(Object o)
-	{
-		Student st = (Student)o;
-		return(this.name.compareTo(st.name)); //String.compareto() which compare strings lexicographically
-	}
+	// @Override
+	// public int compareTo(Object o)
+	// {
+	// 	Student st = (Student)o;
+	// 	return(this.name.compareTo(st.name)); //String.compareto() which compare strings lexicographically
+	// }
 }
 
 /* There are three variants of the compareTo() method which are as follows:
@@ -135,3 +164,4 @@ class Student implements Comparable
 Using int compareTo(Object obj)
 Using int compareTo(String AnotherString)
 Using int compareToIgnoreCase(String str)  */
+
