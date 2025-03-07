@@ -83,6 +83,14 @@ class ComparatorJava {
 		Collections.sort(students, organiser);
 		System.out.println("Sorted list: "+ students);
 
+		//Using Anonymous class(instantiated and used all in one go)
+		students.sort(new Coparator<Student>() {
+			@Override
+			public int compare(Student s1, Student s2) {
+				return Integer.compare(s1.cgpa, s2.cgpa);
+			}
+		});
+		System.out.println("Sorted by cgpa: " + students);
 	}
 }
 
