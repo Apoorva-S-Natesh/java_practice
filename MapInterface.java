@@ -39,6 +39,31 @@ class MapInterface{
 		//values() - returns a colection view of all the values in the HashMap
 		Collection <Integer> values = productMap.values();
 		System.out.println("Values: " + values);
+
+		//Returns a Collection of key=value
+		Set p = productMap.entrySet();
+		System.out.println(p);
+
+		//Another way to access using forEach loop
+		productMap.forEach((na, pr) -> System.out.println("Price: " + pr + ", Name: " + na));
+
+		//yet another way to iterate over the elements
+		Iterator<Map.Entry<String, Integer>> iterator = productMap.entrySet().iterator();
+		while (iterator.hasNext()) 
+		{ 
+			Map.Entry<String, Integer> entry = iterator.next();
+    			System.out.println("Name: " + entry.getKey() + ", Price: " + entry.getValue());
+		}
+
+		//Another method using keyset
+		for (String name : productMap.keySet()) 
+		{
+			System.out.println("Name " + name+ ", Price: " + productMap.get(name));
+		}
+
+		//both Map and Entry are interfaces. If we used Object then individual access to key and value will not be possible
+		for (Map.Entry<String, Integer>product : productMap.entrySet())
+            			System.out.println("Key: " + product.getKey() + " Value: " + product.getValue());
 	}
 
 	public static void treeMap()  // When the key needs to be in sorted order
