@@ -16,6 +16,24 @@ public class CollectionWeakHashMap {
 		//Pause to let garbage collection work
 		try { Thread.sleep(1000); } catch (InterruptedException e) {e.printStackTrace(); }
 		System.out.println("After GC: " + map);	
+		
+		IdentityHashMapExample.example();	
 	}
+}
 
+class IdentityHashMapExample 
+{
+	//Compares keys by their referencce, not by their value. Helps track distinct objects, even if they look the same. Skips the usual equals() and hashCode() methds for comparisions.
+	public static void example()
+	{
+		Map <String, String> restaurantMap = new IdentityHashMap<>();
+		String restaurant1 = new String("Burger King");
+		String restaurant2 = new String("Burger King");
+	
+		restaurantMap.put(restaurant1, "Rating: 4.5");
+		restaurantMap.put(restaurant2, "Rating 4.7");
+
+		System.out.println("IdentityHashMap: " + restaurantMap);
+
+	}
 }
