@@ -64,5 +64,8 @@ class ConcurrentModificaion
 			list1.add(99);
 		}
 		System.out.println("After concurrent modification" +list1); // Output:  After concurrent modification[10, 20, 30, 40, 99, 99, 99, 99]
+		/*Instead of modifying the original lsit, a copy will be created and the modifications will be done on the copy if the list. 
+  		For all the collections present in the concurrent class like - copyOnWriteArrayList,  ConcurrentHashMap, ConcurrentLinkedQueue. 
+    		All the collections in the java.util.Collection are fail-fast classes. */
 	}
 }
