@@ -51,6 +51,9 @@ class ExceptionHandling {
 			System.out.println("Other Operations");
 			exceptionExamples();
 		}
+
+		TestExceptionTrace test = new TestExceptionTrace();
+		test.fun1();
 	}
 
 	public static void exceptionExamples()
@@ -113,6 +116,30 @@ class NestedTry {
             			System.out.println("Element at such index does not exists");
         		}
     	}
+}
+
+class TestExceptionTrace
+{
+	public void fun1()
+	{
+		System.out.println("fun1 is starting");
+		fun2();
+		System.out.println("fun1 is ending");
+	}
+
+	public void fun2()
+	{
+		System.out.println("fun2 is starting");
+		fun3();
+		System.out.println("fun2 is ending");
+	}
+
+	public void fun3()
+	{
+		System.out.println("fun3 is starting");
+		int [] arr = new int[-4];
+		System.out.println("fun3 is ending");
+	}
 }
 
 /*Program is terminated normally and all the flow of the program is maintained - to handle run itme errors exception handling is required*/
