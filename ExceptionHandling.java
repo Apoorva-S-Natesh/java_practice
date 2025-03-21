@@ -28,6 +28,19 @@ class ExceptionHandling {
 			System.out.println("Exception was handled");
 			ime.printStackTrace();	
 		}
+
+		/* One generic catch block but using the instance of different exception classes
+		catch (Exception ex)
+		{
+			if ( ex instanceOf ArithmeticException)
+				System.out.println("Exception : Cannot divide by 0");
+			else if (ex instanceOf InputMismatchException)
+				System.out.println("Exception: Oops you need to enter an integer");
+    			else
+       				System.out.println("Some exception  occured");
+		}
+		*/
+			
 		catch(Exception ex){ //for some new exception, to make the code safe,one catch block to handle all the other exceptions
 			System.out.println("Some exception  occured");
 			System.out.println("Exception was handled");
