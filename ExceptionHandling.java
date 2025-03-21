@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.*;
 
 class ExceptionHandling {
 	public static void main(String[] args)
@@ -14,31 +15,91 @@ class ExceptionHandling {
 			System.out.println("The quotient is: "+ result);
 			/*Exception in thread "main" java.lang.ArithmeticException: / by zero
         at ExceptionHandling.main(ExceptionHandling.java:9)*/
-		}
-		catch(Exception ex) //Exception object
+		}	
+		catch(ArithmeticException ae) //Exception object
 		{
 			System.out.println("Exception : Cannot divide by 0");
 			System.out.println("Exception was handled");
-			ex.printStackTrace();		
+			ae.printStackTrace();		
 		}
-		System.out.println("division is ending");
-		finally 
+		catch(InputMismatchException ime)
 		{
-		System.out.println("Other Operations");
-		exceptionExamples();
+			System.out.println("Exception: Oops you need to enter an integer");
+			System.out.println("Exception was handled");
+			ime.printStackTrace();	
+		}
+		catch(Exception ex){ //for some new exception, to make the code safe,one catch block to handle all the other exceptions
+			System.out.println("Some exception  occured");
+			System.out.println("Exception was handled");
+			ex.printStackTrace();
+		} finally 
+		{
+			System.out.println("division is ending");
+			System.out.println("Other Operations");
+			exceptionExamples();
 		}
 	}
 
 	public static void exceptionExamples()
 	{
 		Scanner sc = new Scanner(System.in);
-		int num1 = sc.nextInt(); //give a string as input -java.util.InputMismatchException
+		System.out.println("Enter a number");
+		try{
+			int num1 = sc.nextInt(); //give a string as input -java.util.InputMismatchException
+		} catch (InputMismatchException ex) {
+			System.out.println("Enter an integer");
+			ex.printStackTrace();
+		}
 
-		//int [] n = {1, 2, 3};
-		//System.out.println(n[3]); //ArrayIndexOutOfBoundsException
+		int [] n = {1, 2, 3};
+		System.out.println("Array is  " +Arrays.toString(n)+" you are trying to access index 3");
+		try
+		{
+			System.out.println(n[3]); //ArrayIndexOutOfBoundsException
+		} catch (ArrayIndexOutOfBoundsException ex){
+			System.out.println("Check the index you are trying to accesss");
+			ex.printStackTrace();
+		}
 		
-		//int [] n1 =new int[-1]; // java.lang.NegativeArraySizeException: -1
+		try
+		{	
+			int [] n1 =new int[-1]; // java.lang.NegativeArraySizeException: -1
+		} catch(NegativeArraySizeException ex) {
+			System.out.println("Check array size! array size cannot be negative");
+			ex.printStackTrace();
+		}
+		
 	}
+}
+
+class NestedTry {
+	
+	public static void main(String args[])
+	{
+		// Main try block
+      		 try {
+            			// initializing array
+            			int a[] = { 1, 2, 3, 4, 5 };
+
+           			// trying to print element at index 5
+            			System.out.println(a[5]);
+
+            			// try-block2 inside another try block
+            			try {
+
+               				 // performing division by zero
+                				int x = a[2] / 0;
+           			 }
+            			catch (ArithmeticException e2) {
+                				System.out.println("division by zero is not possible");
+            			}
+        		}
+        		catch (ArrayIndexOutOfBoundsException e1) 
+		{
+           			System.out.println("ArrayIndexOutOfBoundsException");
+            			System.out.println("Element at such index does not exists");
+        		}
+    	}
 }
 
 /*Program is terminated normally and all the flow of the program is maintained - to handle run itme errors exception handling is required*/
