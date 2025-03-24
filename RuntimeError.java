@@ -7,8 +7,8 @@ class RuntimeError
 		System.out.println("fun() is executing");
 		//Need to have a base case for recuresive methods to avoid StackOverflowError.
 		try{
-		fun(); //Causing Recursion
-		}catch (StackOverflowError e) {
+			fun(); //Causing Recursion
+		} catch (StackOverflowError e) {
 			System.out.println("Stack Overflow Error caught.");
 			exit;
 		}
@@ -33,4 +33,4 @@ class RuntimeError
 }
 
 /* Runtime errors occuer when program is running like OutOfMemoryError, StackOverflowError
-Throable is parent class of Error class and Exception class*/
+Throwable is parent class of Error class and Exception class*/
