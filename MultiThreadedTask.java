@@ -2,15 +2,15 @@ public class MultiThreadedTask
 {
 	public static void main(String[] args) throws InterruptedException
 	{
-		System.out.println(Thread.currentThread().getName());
+		System.out.println(Thread.currentThread().getName()); //main thread
 		TypeThread type = new TypeThread();
-		type.setName("type-thread");
+		type.setName("type-thread"); //setting the name of the thread
 		ErrorCheckThread echeck = new ErrorCheckThread();
 		echeck.setName("error check-thread");
 		SavingThread save = new SavingThread();
 		save.setName("save-thread");
 
-		type.start();
+		type.start(); //only once tis started the Thread Scheduler can allocate time for it
 		echeck.start();
 		save.start();
 	}
