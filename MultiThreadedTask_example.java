@@ -74,3 +74,12 @@ class ScreenSharingThread extends Thread
 		}
 	}
 }
+
+/*
+JVM creates a main thread and gives it to the Thread scheduler. The Thread stack for main is created, in  TS for main, stack frame of main is created.
+
+when video.start() is executed a New line of execution is created and asigned to the scheduler, and inside the ThreadStcak of video Thread a stack frame for run() is created
+
+Now Thread Scheduler can decide which thread to give how much run time, cannot be predicted by us
+
+*/
