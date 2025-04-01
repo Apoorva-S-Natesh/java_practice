@@ -14,7 +14,7 @@ class Mythread extends Thread
 		{
 			if (i == 5)
 				Thread.currentThread().interrupt();
-			if (Thread.interrupted())
+			if (Thread.interrupted()) // or (Thread.currentThread().isInterrrupted()) // isInterrupted is a non-static method so should be called on the object
 				return;
 			System.out.println("Executed task : " +i);
 		}
@@ -22,28 +22,7 @@ class Mythread extends Thread
 }
 
 /*
-States of threads - thread lifecycle
-1. New - the thread is created but hasn't started working yet, this is where we set the name 
-	Thread thread = new Thread(new MyRunnabe());
-2. Runnable - the thread is ready to run and waiting for its turn
-	thread.start();
-Running - Thread scheduler allots CPU time, thread is running now
-3. Blocked - the thread is waiting to use a resource that's currently in use
-4. Waiting - the thread is waiting for another thread to perform an action
-	synchronized (lock) {
-		lock.wait();
-		//The thread is now in the waiting state
-		}
-	The thread waits until another thread calls notify() or notifyAll()
-5. Timed Waiting - the thread is waiting for a specific amount of time.
-	Thread.sleep(15000);
+When an interrupted thread is in a blocking operaton like Thread.sleep(), then  it throws an InterruptedEception which needs to be handled to ensure a graceful shutdown.
 
-		or 
-	synchronized (lock) {
-		lock.wait(5000);
-		//thread waits for either notification or 5 seconds
-	}
-	 thread cannot go to the running directly, once the sleep time is over the thread has to go to the runnable state and when TS allots CPU time, then it can run
-
-6. Terminated or dead - the thread has finished its task
+interrrupt() is preferred over stop() as interrupt() gives th ethread a chance to stop gracefully and release resources, whereas stop() can leave shared resources in an inconsistent state.
 */
