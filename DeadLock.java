@@ -2,11 +2,11 @@ class DeadLock
 {
 	public static void main(String[] args)
 	{
-		ReadingTask rt = new ReadingTask();
-		Thread t1 = new Thread(rt);
+		ReadingTask task = new ReadingTask();
+		Thread t1 = new Thread(task);
 		t1.setName("batman");
 
-		Thread t2 = new Thread(rt);
+		Thread t2 = new Thread(task);
 		t2.setName("superman");
 
 		t1.start();
@@ -19,12 +19,14 @@ class ReadingTask implements Runnable
 	Library l = new Library();
 	public void run()
 	{
+		String tname = Thread.currentThread().getName();
 		try{
-			if (Thread.currentThread().equals("batman"))
+			if(tname.equals("batman"))
 				l.batmanReads();
 			else
 				l.supermanReads();
 		} catch (InterruptedException e) {
+			System.out.println("Some exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -38,38 +40,40 @@ class Library
 
 	public void batmanReads() throws InterruptedException
 	{
+		String tname = Thread.currentThread().getName();
 		synchronized(res1) {
 			//to show that someone is occupying this resource
-			System.out.println(res1 + " is occupied by batman");
+			System.out.println(res1 + " is occupied by " +tname);
 			Thread.sleep(3000);
 		}
 		synchronized(res2) {
 			//to show that someone is occupying this resource
-			System.out.println(res2 + " is occupied by batman");
+			System.out.println(res2 + " is occupied by " +tname);
 			Thread.sleep(3000);
 		}
 		synchronized(res3) {
 			//to show that someone is occupying this resource
-			System.out.println(res3 + " is occupied by batman");
+			System.out.println(res3 + " is occupied by " +tname);
 			Thread.sleep(3000);
 		}
 	}
 
 	public void supermanReads() throws InterruptedException
 	{
+		String tname = Thread.currentThread().getName();
 		synchronized(res1) {
 			//to show that someone is occupying this resource
-			System.out.println(res1 + " is occupied by superman");
+			System.out.println(res1 + " is occupied by  " +tname);
 			Thread.sleep(3000);
 		}
 		synchronized(res2) {
 			//to show that someone is occupying this resource
-			System.out.println(res2 + " is occupied by superman");
+			System.out.println(res2 + " is occupied by  " +tname);
 			Thread.sleep(3000);
 		}
 		synchronized(res3) {
 			//to show that someone is occupying this resource
-			System.out.println(res3 + " is occupied by superman");
+			System.out.println(res3 + " is occupied by  " +tname);
 			Thread.sleep(3000);
 		}
 	}
