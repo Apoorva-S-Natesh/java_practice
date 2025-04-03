@@ -35,9 +35,10 @@ class ReadingTask implements Runnable
 class Library
 {
 	String res1 = "Java book";
-	String res2 = "React book";
-	String res3 = "sql book";
+	String res2 = "sql book";
+	String res3 = "React book";
 
+/*
 	public void batmanReads() throws InterruptedException
 	{
 		String tname = Thread.currentThread().getName();
@@ -75,6 +76,46 @@ class Library
 			//to show that someone is occupying this resource
 			System.out.println(res3 + " is occupied by  " +tname);
 			Thread.sleep(3000);
+		}
+	}
+*/
+
+// Introducing deadlock
+	public void batmanReads() throws InterruptedException
+	{
+		String tname = Thread.currentThread().getName();
+		//Nested Synchronized blocks - acquires one after the other but only after all the three are read acquired, all of the resources will be released
+		synchronized(res1) {
+			System.out.println(res1 + " is occupied by " +tname);
+			Thread.sleep(3000);
+			synchronized(res2) {
+				System.out.println(res2 + " is occupied by " +tname);
+				Thread.sleep(3000);
+				synchronized(res3) {
+					System.out.println(res3 + " is occupied by " +tname);
+					Thread.sleep(3000);
+				}
+			}
+		}
+		
+	}
+
+	public void supermanReads() throws InterruptedException
+	{
+		String tname = Thread.currentThread().getName();
+		
+		//Order of acquiring the resouces is reversed
+		synchronized(res3) {
+			System.out.println(res3 + " is occupied by  " +tname);
+			Thread.sleep(3000);
+			synchronized(res2) {
+				System.out.println(res2 + " is occupied by  " +tname);
+				Thread.sleep(3000);
+				synchronized(res1) {
+					System.out.println(res1 + " is occupied by  " +tname);
+					Thread.sleep(3000);
+				}
+			}
 		}
 	}
 }
