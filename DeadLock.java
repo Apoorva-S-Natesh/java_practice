@@ -88,12 +88,15 @@ class Library
 		synchronized(res1) {
 			System.out.println(res1 + " is occupied by " +tname);
 			Thread.sleep(3000);
+			System.out.println(tname + " releasing book "+res1);
 			synchronized(res2) {
 				System.out.println(res2 + " is occupied by " +tname);
 				Thread.sleep(3000);
+				System.out.println(tname + " releasing book "+res2);
 				synchronized(res3) {
 					System.out.println(res3 + " is occupied by " +tname);
 					Thread.sleep(3000);
+					System.out.println(tname + " releasing book "+res3);
 				}
 			}
 		}
@@ -108,12 +111,15 @@ class Library
 		synchronized(res3) {
 			System.out.println(res3 + " is occupied by  " +tname);
 			Thread.sleep(3000);
+			System.out.println(tname + " releasing book "+res3);
 			synchronized(res2) {
 				System.out.println(res2 + " is occupied by  " +tname);
 				Thread.sleep(3000);
+				System.out.println(tname + " releasing book "+res2);\
 				synchronized(res1) {
 					System.out.println(res1 + " is occupied by  " +tname);
 					Thread.sleep(3000);
+					System.out.println(tname + " releasing book "+res1);
 				}
 			}
 		}
