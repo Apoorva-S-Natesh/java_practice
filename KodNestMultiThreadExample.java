@@ -58,6 +58,9 @@ Placement is goin on
 Placement is goin on
 Placement is goin on
 Placement is goin on
+Placement is goin on
+Placement is goin on
+Placement is goin on
 Placement has ended
 
 
