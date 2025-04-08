@@ -4,6 +4,12 @@ public class FileHandling1
 {
 	public static void main(String[] args) throws IOException
 	{
+		File f = new File("sample.txt");
+		System.out.println("Exists: "  + f.exists());
+		System.out.println("Is File: "  + f.isFile());
+		System.out.println("Is Directory: " +  f.isDirectory());
+		System.out.println("Absolute Path: " +  f.getAbsolutePath());
+		System.out.println("Relative Path: "  +f.getPath());
 		/*
 		File f = new File("sample.txt"); //Objectof File class is created with name f, file name as sample.txt
 		if (f.createNewFile()) //Checks and creates if file doesnt exist
