@@ -2,6 +2,7 @@ import java.io.*;
 
 class Student implements Serializable
 {
+	private static final long serialVersionUID = 1L; //To maintian different versions of the class
 	int roll;
 	String name;
 	transient int otp; /*When Object is punctured and tried to be saved by serialization, this will not be. transient keyword will make that particular field not saved in the file and instead defaultvalue will be saved*/
