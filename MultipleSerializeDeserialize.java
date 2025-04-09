@@ -4,20 +4,24 @@ class Student implements Serializable
 {
 	int roll;
 	String name;
-	public Student(int roll, String name)
+	transient int otp; /*When Object is punctured and tried to be saved by serialization, this will not be. transient keyword will make that particular field not saved in the file and instead defaultvalue will be saved*/
+
+	public Student(int roll, String name, int otp)
 	{
+		super();
 		this.roll = roll;
 		this.name = name;
+		this.otp = otp;
 	}
 	@Override
 	public String toString()
 	{
-		return "Student [roll= "+ roll + " name= " +name +"]" ;
+		return "Student [roll= "+ roll + " name= " +name +" otp= "+ otp +"]" ;
 	}
 }
 	
 
-public class multipleSerializeDeserialize
+public class MultipleSerializeDeserialize
 {
 	public static void main(String[] args) throws Exception
 	{
@@ -27,12 +31,12 @@ public class multipleSerializeDeserialize
 
 	public static void writeObject() throws Exception
 	{
-		FileOutputStream fos = new FileOutputStream("example1.txt", true);
+		FileOutputStream fos = new FileOutputStream("example2.txt", true);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-		Student st1 = new Student(1, "Apoo");
-		Student st2 = new Student(2, "Jay");
-		Student st3 = new Student(3, "AJ");
+		Student st1 = new Student(1, "Apoo", 5345);
+		Student st2 = new Student(2, "Jay", 2039);
+		Student st3 = new Student(3, "AJ", 2345);
 
 		oos.writeObject(st1);
 		oos.writeObject(st2);
@@ -44,7 +48,7 @@ public class multipleSerializeDeserialize
 
 	public static void readObjects() throws Exception
 	{
-		FileInputStream fis = new FileInputStream("example1.txt");
+		FileInputStream fis = new FileInputStream("example2.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 	
 		try {
