@@ -59,7 +59,7 @@ class Sun implements Serializable
 		return object;		
 	}
 	
-	//To ensure the same instance is returned during deserialization (Comment this and 2 singleton is broken, 2 objects are created)
+	//To ensure the same instance is returned during deserialization (Comment this and singleton is broken, 2 objects are created)
 	protected Object readResolve() {
 		return getObject();
 	}
