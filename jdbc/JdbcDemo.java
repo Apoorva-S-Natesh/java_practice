@@ -19,7 +19,7 @@ public class JdbcDemo {
 		 *    url:		tech:db://ipaddress or localost:portNumber/database name
 		 */
 		String uname="root";
-		String pass="Aj@080123"; //username and password of mysql
+		String pass="1234"; //username and password of mysql
 		Connection con = DriverManager.getConnection(url, uname, pass); //establishing the connection, Connection is a interface
 		
 		System.out.println("Connection Established: " + con);

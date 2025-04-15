@@ -9,7 +9,7 @@ public class JdbcIntroduction {
 		
 		String url = "jdbc:mysql://localhost:3306/j2ee";
 		String uname = "root";
-		String pass = "Aj@080123";
+		String pass = "1234";
 		//String sql = "INSERT INTO student VALUES(7, 'Shashu'),(8, 'Anani')";
 		String sql = "SELECT * FROM student";
 		
