@@ -30,9 +30,9 @@ public class SqlTransactions{
 }
 
 /* 
- * Only when both the queries are correct ad can be executed, 
+ * Only when both the queries are correct and can be executed, 
  * it will execute both. Otherwise if one the queries is wrong, 
- * both will not be executed. To check this behaviour, 
+ * both will not be executed(rolled back). To check this behaviour, 
  * comment out setAutoCommit() lines and make one of the queries wrong by changing the table name.
  * In that case, only the correct query will be executed and changes will be made to the table.
  * 
