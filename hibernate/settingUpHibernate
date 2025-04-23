@@ -6,6 +6,8 @@ Hibernate 4.1.5.SP1 (or similar version)
 MySQL Connector/J (e.g., mysql-connector-java-5.1.21-bin.jar)
 
 Step 1: Download Required Libraries or create maven project and add these two in the pom.xml as dependencies(recommended and done this in project)
+while creating a maven project choose org.apache.maven.archetypes - maven-archtype-quickstart
+add Artifact -Id and group Id
 Hibernate:
 Download from http://hibernate.org/downloads
 Extract and locate the JAR files under lib/required.
@@ -56,8 +58,10 @@ pom.xml file:
 </project>
 
 
-Step 2: Setup MySQL Database or can use update in it hibernate.cfg.xml file:
-login to myswl on powershell or sqlworkbench and create a database and table
+Step 2: create a configuration file called hibernate.cfg.xml in src/main
+download hibernate.dtd file and copy paste the <!DOCTYPE hibrenate> tag into this file.
+Setup MySQL Database or can use update it hibernate.cfg.xml file:
+login to mysql on powershell or sqlworkbench and create a database and table
 for example:
 CREATE DATABASE j2ee;
 USE j2ee;
@@ -70,6 +74,7 @@ CREATE TABLE student (
 )
 
 hibernate.cfg.xml file:
+Add <hibernate-configuration> and <session-factory> - they tell hibernate about the database conncetion
 
 <!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -79,22 +84,22 @@ hibernate.cfg.xml file:
 <hibernate-configuration>
  <session-factory>
   
-  	<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> //Drivers are automatically added on latest java so thisis optional
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/j2ee</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">xxxx</property>
  
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="show_sql">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property> // this is about the type of or version of DBMS
+    <property name="hibernate.hbm2ddl.auto">update</property> // Can be create also - when its update, it creates the table if not present and then updates everytime. With create the table is created everytime. Same table is not updated
+    <property name="show_sql">true</property> // To show the hibernate queries in hibernate query language
  
-     <mapping class="learn.hiber.Student"/>
+     <mapping class="learn.hiber.Student"/> // Class to whih mapping has to be done.
   
  </session-factory>
 </hibernate-configuration>
 
-Step 3:
-create an entity class : Student.java file
+Step 3: create an entity class : Student.java file
+
 package learn.hiber;
 
 import jakarta.persistence.Entity;
@@ -116,8 +121,7 @@ public class Student {
 	}
 }
 
-Step 4:
-Add this to the App.java file :
+Step 4: Add this to the App.java file (Entry to the porgram):
 package learn.hiber;
 
 import org.hibernate.SessionFactory;
@@ -127,11 +131,20 @@ public class App
 {
     public static void main( String[] args )
     {
+        Student st = new Student(1, "Apoo", "Mysore", 2025);
+    	
         Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml"); //Specifying where the configuration file is
-        SessionFactory fact = cfg.buildSessionFactory();
+        cfg.configure("hibernate.cfg.xml"); //Specifying where the configuration file is located
+        SessionFactory factory = cfg.buildSessionFactory();
+        //System.out.println(factory);
+        Session session = factory.openSession(); // Create a session 
+        Transaction tx = session.beginTransaction(); // Create a transsaction
         
-        System.out.println(fact);
+        session.save(st); // Internally does this: Hibernate: insert into Student (address,name,yop,kodId) values (?,?,?,?)
+        tx.commit(); //Has to be committed everytime
     }
 }
+
+Step 5: java sometimes might have some glitches in that case, 
+go to help, search for maven and unckeck all the selected option and click on apply then check the options with download and click on apply, apply and exit
 
