@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 //@WebServlet("/login") //Same as what is mentioned in the form action, since using servlet mapping in xml
-public class LoginServelet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
            
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dbUname = "Apoo";
